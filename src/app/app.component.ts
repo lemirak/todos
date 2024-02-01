@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
     styleUrl: './app.component.scss'
 })
 export class AppComponent {
-    title = 'My App';
+    title = 'My Todo App';
 }

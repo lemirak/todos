@@ -1,0 +1,13 @@
+<div class="todo-item-container">
+    <ng-container *ngIf="!editing; else editForm">
+        <span>{{todo?.text}}</span>
+        <button (click)="onEditClicked(todo)">✏️ Edit</button>
+        <button (click)="onRemoveClicked(todo)">🗑️ Remove</button>
+    </ng-container>
+
+    <ng-template #editForm>
+        <input class="todo-edit-input" [(ngModel)]="editModelValue">
+        <button (click)="onSaveClicked(todo)">💾 Save</button>
+        <button (click)="onEditCancelled()">✖ Cancel</button>
+    </ng-template>
+</div>
