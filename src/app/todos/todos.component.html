@@ -1,0 +1,25 @@
+<h2>Todos Component</h2>
+
+<input [(ngModel)]="currentTextValue">
+
+<button (click)="addTodo(currentTextValue)">Add new</button>
+
+<ul>
+    <li *ngFor="let todo of todos$ | async" class="todo-item-container">
+        <ng-container *ngIf="currentTodoEdit?.id === todo.id; else todoText">
+            <input class="todo-edit-input" [(ngModel)]="todo.text">
+        </ng-container>
+
+        <button *ngIf="currentTodoEdit?.id !== todo.id; else saveBtn" (click)="editTodo(todo)">✏️ Edit</button>
+
+        <button *ngIf="currentTodoEdit?.id === todo.id" (click)="stopEdit()">✖ Cancel</button>
+
+        <button (click)="removeTodo(todo)">🗑️ Remove</button>
+        <ng-template #saveBtn>
+            <button (click)="saveCurrentTodo(todo)">💾 Save</button>
+        </ng-template>
+        <ng-template #todoText>{{todo.text}}</ng-template>
+    </li>
+</ul>
+
+
